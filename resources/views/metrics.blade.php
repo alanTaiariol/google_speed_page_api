@@ -67,8 +67,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                     @foreach ($metricHistoryRun as $metric)
+                    @foreach ($metricHistoryRun as $metric)
+                     <tr>
                          <td>{{$metric->url }}</td>
                          <td>{{$metric->accesibility_metric == 'null' ? '' : $metric->accesibility_metric }}</td>
                          <td>{{$metric->best_practices_metric == 'null' ? '' : $metric->best_practices_metric }}</td>
@@ -77,9 +77,8 @@
                          <td>{{$metric->seo_metric == 'null' ? '' : $metric->seo_metric}}</td>
                          <td>{{$metric->strategy_id == 1 ? 'DESKTOP' : 'MOBILE'}}</td>
                          <td>{{$metric->created_at}}</td>
-                     @endforeach
-   
                     </tr>
+                     @endforeach
                 </tbody>
                 </table>
             </div>
