@@ -16,17 +16,19 @@ class MetricHistoryRunController extends Controller
      */
     public function index()
     {
-
-        $categories = Category::all();
-        $strategies = Strategy::all();
-        $metricHistoryRun = MetricHistoryRun::all();
-        return view('metrics', ["categories" => $categories, "strategies" => $strategies, "metricHistoryRun" => $metricHistoryRun] );
+        try {
+            $categories = Category::all();
+            $strategies = Strategy::all();
+            $metricHistoryRun = MetricHistoryRun::all();
+            return view('metrics', ["categories" => $categories, "strategies" => $strategies, "metricHistoryRun" => $metricHistoryRun] );
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }    
 
     public function create(Request $request)
     {
-        try{
-            
+        try {
             $url = $request->input('url');
             $strategy = $request->input('strategy');
             $category = $request->input('scores');
@@ -59,7 +61,8 @@ class MetricHistoryRunController extends Controller
                 'best_practices_metric' => $array_scores['best_practices_metric'],
                 'strategy_id' => $strategy
             ]);
-    
+
+
             return response()->json(['message' => 'Record created successfully'], 201);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
