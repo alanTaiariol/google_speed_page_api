@@ -70,7 +70,7 @@
                     <th scope="col">DATE</th>
                     </tr>
                 </thead>
-                <tbody id="metrics_saved_body">
+                <tbody>
                     @foreach ($metricHistoryRun as $metric)
                      <tr>
                          <td>{{$metric->url }}</td>
