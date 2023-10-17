@@ -5,9 +5,9 @@
 
 </head>
 <body>
-<div class="container">
+<div class="container offset-md-2">
     <div class="row">
-        <div class="col-md-8 offset-md-2">
+        <div class="col-md-10">
             <h1>Obtain Metrics</h1>
 
                 <div class="mb-3">
@@ -37,22 +37,24 @@
                 <button id="submit_button" class="btn btn-primary">get metrics</button>
         </div>
         <div class="row">
-            <div class="col-12">
+            <div class="col-md-10">
                 <div id="myResults">
 
+                </div>
+                <div id="alert_success" class="alert alert-success alert-dismissible fade hide" role="alert">
+                    <strong>Success!</strong> Your operation was completed successfully.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             </div>
         </div>
         
-        <div id="alert_success" class="alert alert-success alert-dismissible fade hide" role="alert">
-            <strong>Success!</strong> Your operation was completed successfully.
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+        
         
         <input type="hidden" id="scores" name="scores[]" value="">
         
         <div class="row">
-            <div class="col-12">
+            <div class="col-md-8">
+                <h3>Metrics saved</h3>
                 <table class="table">
                 <thead>
                     <tr>
@@ -142,11 +144,11 @@
                         table += `</tr></thead><tbody><tr>`;
                         
                         table +=`<td>${url}</td>`;
+
                         $.each(titles_scores, function(key,val) {
-                                console.log("scores");
-                                console.log(val.score);
                                 table +=`<td>${val.score}</td>`;
                         });             
+
                         table +=`<td>${strategy}</td>`;
                         table +=`<td><button id="save_metrics" class="btn btn-primary">save metrics</button></td>`;
                         table +=`</tr> </tbody> </table>`;
