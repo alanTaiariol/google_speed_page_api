@@ -62,8 +62,9 @@ class MetricHistoryRunController extends Controller
                 'strategy_id' => $strategy
             ]);
 
+            $metricHistoryRun = MetricHistoryRun::latest('created_at')->first();
 
-            return response()->json(['message' => 'Record created successfully'], 201);
+            return response()->json(['message' => 'Record created successfully', "metricHistoryRun" => $metricHistoryRun], 201);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }

@@ -17,6 +17,7 @@
 
                 <div class="mb-3">
                     <label class="form-check-label">Categories:</label><br>
+                    <button class="btn btn-primary" id="every_categories">select every categories</button> <br><br>
                     @foreach($categories as $category)
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="checkbox" id="{{ $category->name }}" name="categories[]" value="{{ $category->name }}">
@@ -24,6 +25,7 @@
                         </div>
                     @endforeach
                 </div>
+                
 
                 <div class="mb-3">
                     <label for="strategy" class="form-label">Select Strategy:</label>
@@ -68,7 +70,7 @@
                     <th scope="col">DATE</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="metrics_saved_body">
                     @foreach ($metricHistoryRun as $metric)
                      <tr>
                          <td>{{$metric->url }}</td>
@@ -150,7 +152,7 @@
                         });             
 
                         table +=`<td>${strategy}</td>`;
-                        table +=`<td><button id="save_metrics" class="btn btn-primary">save metrics</button></td>`;
+                        table +=`<td><button id="save_metrics" class="btn btn-success">save metrics</button></td>`;
                         table +=`</tr> </tbody> </table>`;
 
                         
@@ -189,7 +191,9 @@
                 success: function (response) {
                     
                     console.log('successfully POST');
-                    console.log(response);
+                    console.log("metricHistoryRun")
+                    console.log(response.metricHistoryRun);
+
                     if(response) {
                         $("#alert_success").removeClass('hide');
 
@@ -203,6 +207,17 @@
                 }
             });
         });
+
+        $('#every_categories').click(function () {
+            if($(this).hasClass('allChecked')) {
+                $('input[name="categories[]"]').prop('checked', false);
+                $(this).removeClass('allChecked');
+            } else {
+                $('input[name="categories[]"]').prop('checked', true);
+                $(this).addClass('allChecked');
+            }
+        
+    });
     });
         
 </script>
