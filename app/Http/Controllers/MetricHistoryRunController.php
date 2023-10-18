@@ -19,7 +19,7 @@ class MetricHistoryRunController extends Controller
         try {
             $categories = Category::all();
             $strategies = Strategy::all();
-            $metricHistoryRun = MetricHistoryRun::all();
+            $metricHistoryRun = MetricHistoryRun::with('strategy')->get();
             return view('metrics', ["categories" => $categories, "strategies" => $strategies, "metricHistoryRun" => $metricHistoryRun] );
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -62,7 +62,8 @@ class MetricHistoryRunController extends Controller
                 'strategy_id' => $strategy
             ]);
 
-            $metricHistoryRun = MetricHistoryRun::latest('created_at')->first();
+            $metricHistoryRun =MetricHistoryRun::with('strategy')->latest('created_at')->first();
+
 
             return response()->json(['message' => 'Record created successfully', "metricHistoryRun" => $metricHistoryRun], 201);
         } catch (Exception $e) {

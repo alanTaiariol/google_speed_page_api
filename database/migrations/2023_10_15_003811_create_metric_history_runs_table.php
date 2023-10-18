@@ -19,10 +19,11 @@ return new class extends Migration
             $table->float('performance_metric')->nullable();
             $table->float('seo_metric')->nullable();
             $table->float('best_practices_metric')->nullable();
+            $table->unsignedBigInteger('strategy_id');
             $table->timestamps();
     
             // Add a foreign key column for the strategy relationship
-            $table->unsignedBigInteger('strategy_id');
+            
             $table->foreign('strategy_id')->references('id')->on('strategies');
         });
     }

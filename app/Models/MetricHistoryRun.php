@@ -21,6 +21,6 @@ class MetricHistoryRun extends Model
 
     public function strategy()
     {
-        return $this->hasOne(Strategy::class);
+        return $this->hasOne(Strategy::class, "id", "strategy_id");
     }
 }

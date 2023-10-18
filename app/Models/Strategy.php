@@ -10,8 +10,8 @@ class Strategy extends Model
     use HasFactory;
 
 
-    public function strategy()
+    public function metricHistoryRun()
     {
-        return $this->belongsTo(MetricHistoryRun::class);
+        return $this->belongsTo(MetricHistoryRun::class, 'strategy_id');
     }
 }

@@ -79,7 +79,7 @@
                          <td>{{$metric->performance_metric == 'null' ? '' : $metric->performance_metric }}</td>
                          <td>{{$metric->pwa_metric == 'null' ? '' : $metric->pwa_metric }}</td>
                          <td>{{$metric->seo_metric == 'null' ? '' : $metric->seo_metric}}</td>
-                         <td>{{$metric->strategy_id == 1 ? 'DESKTOP' : 'MOBILE'}}</td>
+                         <td>{{$metric->strategy->name}}</td>
                          <td>{{$metric->created_at}}</td>
                     </tr>
                      @endforeach
